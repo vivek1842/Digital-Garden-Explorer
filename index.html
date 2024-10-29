@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Garden Explorer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <header class="container-fluid text-center py-4 bg-success text-white">
+        <h1>Digital Garden Explorer</h1>
+        <p>Create your virtual garden with inspiring plants</p>
+    </header>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Your Garden</h3>
+                <ul id="gardenList" class="list-group">
+                    <!-- Plant list populated here -->
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <canvas id="growthChart"></canvas>
+            </div>
+        </div>
+
+        <div class="my-5">
+            <button class="btn btn-primary" onclick="addPlant('Mindfulness')">Add Mindfulness Plant</button>
+            <button class="btn btn-info" onclick="addPlant('Knowledge')">Add Knowledge Plant</button>
+            <button class="btn btn-warning" onclick="addPlant('Creativity')">Add Creativity Plant</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
