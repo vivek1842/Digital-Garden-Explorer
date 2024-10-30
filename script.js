@@ -13,8 +13,9 @@ function addPlant(type) {
 
     updateGrowth(type);
 }
+let growthChart;  // Global variable to store the chart instance
 
-async function updateGrowth(type) {
+function updateGrowth(type) {
     const growthFactor = Math.random() * 10;  // Replace with API data if available
     const currentDate = new Date().toLocaleDateString();
     
@@ -28,7 +29,14 @@ async function updateGrowth(type) {
 
 function renderChart(type) {
     const ctx = document.getElementById('growthChart').getContext('2d');
-    new Chart(ctx, {
+    
+    // Check if the chart instance already exists and destroy it
+    if (growthChart) {
+        growthChart.destroy();
+    }
+
+    // Create a new chart instance
+    growthChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: gardenData[type].growth.map((_, i) => `Day ${i + 1}`),
@@ -43,6 +51,7 @@ function renderChart(type) {
         options: { responsive: true }
     });
 }
+
 // Adding Journal Entry
 function addJournalEntry() {
     const journalInput = document.getElementById('journalInput').value;
