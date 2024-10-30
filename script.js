@@ -43,3 +43,41 @@ function renderChart(type) {
         options: { responsive: true }
     });
 }
+// Adding Journal Entry
+function addJournalEntry() {
+    const journalInput = document.getElementById('journalInput').value;
+    const journalEntries = document.getElementById('journalEntries');
+    
+    if (journalInput) {
+        const entry = document.createElement('p');
+        entry.textContent = `• ${journalInput}`;
+        journalEntries.appendChild(entry);
+        document.getElementById('journalInput').value = ''; // Clear input
+    }
+}
+
+// Drag-and-Drop Functionality
+const tiles = document.querySelectorAll('.draggable');
+const gardenLayout = document.getElementById('gardenLayout');
+
+tiles.forEach(tile => {
+    tile.addEventListener('dragstart', dragStart);
+});
+
+gardenLayout.addEventListener('dragover', dragOver);
+gardenLayout.addEventListener('drop', drop);
+
+function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.id);
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+function drop(e) {
+    const id = e.dataTransfer.getData('text');
+    const draggableElement = document.getElementById(id);
+    gardenLayout.appendChild(draggableElement);
+    e.dataTransfer.clearData();
+}
